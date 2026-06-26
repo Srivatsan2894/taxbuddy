@@ -136,3 +136,4 @@ For issues, suggestions, or feedback, please create an issue on GitHub.
 
 **Start planning your taxes smartly with TaxBuddy!** 💰
 "Build ready" 
+"Ready to build" 
