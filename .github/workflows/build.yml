@@ -24,6 +24,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      
       - name: Install npm deps
         run: npm install
       
@@ -33,8 +36,8 @@ jobs:
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
       
-      - name: Initialize Capacitor
-        run: npx capacitor add android || echo "Android already added"
+      - name: Add Android Platform
+        run: npx capacitor add android
       
       - name: Sync Capacitor
         run: npx capacitor sync android
