@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { taxCalculator } from '@/lib/taxCalculator'
-import { SalaryInput } from '@/types/tax'
-import { saveToStorage } from '@/utils/storage'
+import { taxCalculator } from '../lib/taxCalculator'
+import { SalaryInput } from '../types/tax'
+import { saveToStorage } from '../utils/storage'
 
 export default function Wizard() {
   const navigate = useNavigate()
@@ -39,9 +39,10 @@ export default function Wizard() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
+    const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : parseFloat(value) || 0
     setInput({
       ...input,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : parseFloat(value) || 0,
+      [name]: newValue,
     })
   }
 
@@ -60,7 +61,7 @@ export default function Wizard() {
       <input
         type="number"
         name={name}
-        value={input[name] || ''}
+        value={(input[name] as number) || ''}
         onChange={handleChange}
         placeholder="0"
         style={{
@@ -80,7 +81,6 @@ export default function Wizard() {
       <p style={{ color: '#666', marginBottom: '2rem' }}>Enter your income and deduction details</p>
 
       <div style={{ background: '#f9f9f9', padding: '2rem', borderRadius: '8px', border: '1px solid #eee' }}>
-        {/* Financial Year */}
         <div style={{ marginBottom: '2rem' }}>
           <label style={{ display: 'block', marginBottom: '0.5rem', color: '#333', fontWeight: '500' }}>
             Financial Year
@@ -103,7 +103,6 @@ export default function Wizard() {
           </select>
         </div>
 
-        {/* Income Section */}
         <h2 style={{ fontSize: '1.1rem', color: '#333', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid #6200EA' }}>
           Income
         </h2>
@@ -120,7 +119,6 @@ export default function Wizard() {
         <InputGroup label="Capital Gains" name="capitalGains" hint="From investments/property" />
         <InputGroup label="Other Income" name="otherIncome" />
 
-        {/* Deductions Section */}
         <h2 style={{ fontSize: '1.1rem', color: '#333', marginBottom: '1rem', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '2px solid #6200EA' }}>
           Deductions (Old Regime)
         </h2>
@@ -131,7 +129,6 @@ export default function Wizard() {
         <InputGroup label="Home Loan Interest" name="homeLoanInterestPaid" hint="Section 24(b) - Max ₹2,00,000" />
         <InputGroup label="Employee PF Contribution" name="employeePfContribution" hint="12% of basic or actual" />
 
-        {/* Other Information */}
         <h2 style={{ fontSize: '1.1rem', color: '#333', marginBottom: '1rem', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '2px solid #6200EA' }}>
           Other Information
         </h2>
@@ -148,7 +145,6 @@ export default function Wizard() {
           </label>
         </div>
 
-        {/* Calculate Button */}
         <button
           onClick={handleCalculate}
           style={{
