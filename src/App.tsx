@@ -13,25 +13,19 @@ function App() {
 
   useEffect(() => {
     const saved = localStorage.getItem('darkMode')
-    if (saved) {
-      setDarkMode(JSON.parse(saved))
-    }
+    if (saved) setDarkMode(JSON.parse(saved))
   }, [])
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode))
-    if (darkMode) {
-      document.documentElement.style.filter = 'invert(1) hue-rotate(180deg)'
-    } else {
-      document.documentElement.style.filter = 'none'
-    }
+    document.documentElement.style.filter = darkMode ? 'invert(1) hue-rotate(180deg)' : 'none'
   }, [darkMode])
 
   return (
     <Router>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar darkMode={darkMode} onDarkModeToggle={() => setDarkMode(!darkMode)} />
-        <main style={{ flex: 1, backgroundColor: darkMode ? '#121212' : '#f5f5f5' }}>
+        <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />

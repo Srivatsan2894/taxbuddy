@@ -8,9 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "cap:add:android": "capacitor add android",
-    "cap:sync": "capacitor sync android",
-    "cap:build:android": "npm run build && capacitor copy android && cd android && ./gradlew assembleRelease && cd ..",
-    "cap:open:android": "capacitor open android"
+    "cap:sync": "capacitor sync android"
   },
   "dependencies": {
     "react": "^18.2.0",

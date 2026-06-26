@@ -34,8 +34,6 @@ export interface TaxCalculationResult {
   fy: string
   input: SalaryInput
   calculatedAt: Date
-  
-  // Old Regime
   grossIncomeOld: number
   totalDeductionsOld: number
   taxableIncomeOld: number
@@ -45,8 +43,6 @@ export interface TaxCalculationResult {
   totalTaxOld: number
   effectiveRateOld: number
   takeHomeOld: number
-  
-  // New Regime
   grossIncomeNew: number
   totalDeductionsNew: number
   taxableIncomeNew: number
@@ -56,12 +52,8 @@ export interface TaxCalculationResult {
   totalTaxNew: number
   effectiveRateNew: number
   takeHomeNew: number
-  
-  // Recommendation
   recommendedRegime: 'old' | 'new'
   savings: number
   explanation: string
   taxHealthScore: number
 }
-
-export type FinancialYear = 'FY_2024_25' | 'FY_2025_26' | 'FY_2026_27'
