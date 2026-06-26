@@ -1,4 +1,4 @@
-import { SalaryInput, TaxCalculationResult } from '@/types/tax'
+import { SalaryInput, TaxCalculationResult } from '../types/tax'
 
 export class TaxCalculator {
   private taxSlabs = {
@@ -25,7 +25,6 @@ export class TaxCalculator {
     const id = Math.random().toString(36).substr(2, 9)
     const totalIncome = this.getTotalIncome(input)
 
-    // Old Regime Calculation
     const oldDeductions = this.calculateOldRegimeDeductions(input)
     const oldTaxableIncome = Math.max(0, totalIncome - oldDeductions)
     const oldTax = this.calculateTaxFromIncome(oldTaxableIncome, input.fy, 'old')
@@ -33,7 +32,6 @@ export class TaxCalculator {
     const oldCess = this.calculateCess(oldTax + oldSurcharge)
     const totalTaxOld = oldTax + oldSurcharge + oldCess
 
-    // New Regime Calculation
     const newDeductions = 750000
     const newTaxableIncome = Math.max(0, totalIncome - newDeductions)
     const newTax = this.calculateTaxFromIncome(newTaxableIncome, input.fy, 'new')
@@ -41,12 +39,10 @@ export class TaxCalculator {
     const newCess = this.calculateCess(newTax + newSurcharge)
     const totalTaxNew = newTax + newSurcharge + newCess
 
-    // Recommendation
     const recommendedRegime = oldTax < newTax ? 'old' : 'new'
     const savings = Math.abs(oldTax - newTax)
     const explanation = this.getExplanation(oldTax, newTax, oldDeductions)
 
-    // Tax Health Score
     const taxHealthScore = this.calculateTaxHealthScore(input, oldDeductions, totalTaxOld, totalIncome)
 
     return {
@@ -98,24 +94,13 @@ export class TaxCalculator {
 
   private calculateOldRegimeDeductions(input: SalaryInput): number {
     let deductions = 0
-
-    // Section 80C
     deductions += Math.min(1500000, input.section80C)
-
-    // Section 80D
     deductions += Math.min(250000, input.section80D)
-
-    // Section 80E
     deductions += Math.min(500000, input.section80E)
-
-    // Home Loan Interest
     if (input.hasHomeLoan) {
       deductions += Math.min(2000000, input.homeLoanInterestPaid)
     }
-
-    // NPS
     deductions += Math.min(500000, input.npsContribution)
-
     return deductions
   }
 
