@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getFromStorage } from '@/utils/storage'
-import { TaxCalculationResult } from '@/types/tax'
+import { getFromStorage } from '../utils/storage'
+import { TaxCalculationResult } from '../types/tax'
 
 export default function Results() {
   const navigate = useNavigate()
@@ -43,7 +43,6 @@ export default function Results() {
       <h1 style={{ color: '#6200EA', marginBottom: '0.5rem' }}>Tax Calculation Results</h1>
       <p style={{ color: '#666', marginBottom: '2rem' }}>{result.fy} | {new Date(result.calculatedAt).toLocaleDateString()}</p>
 
-      {/* Recommendation Card */}
       <div style={{
         background: result.recommendedRegime === 'old' ? '#e3f2fd' : '#e8f5e9',
         border: `2px solid ${result.recommendedRegime === 'old' ? '#2196f3' : '#4caf50'}`,
@@ -61,7 +60,6 @@ export default function Results() {
         <p style={{ color: '#666', lineHeight: '1.6' }}>{result.explanation}</p>
       </div>
 
-      {/* Income Overview */}
       <h2 style={{ color: '#333', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '2px solid #6200EA' }}>
         Income Overview
       </h2>
@@ -82,14 +80,12 @@ export default function Results() {
         </p>
       </div>
 
-      {/* Side by Side Comparison */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '2rem',
         marginBottom: '2rem'
       }}>
-        {/* Old Regime */}
         <div style={{
           background: '#e3f2fd',
           border: '2px solid #2196f3',
@@ -130,7 +126,6 @@ export default function Results() {
           </div>
         </div>
 
-        {/* New Regime */}
         <div style={{
           background: '#e8f5e9',
           border: '2px solid #4caf50',
@@ -172,7 +167,6 @@ export default function Results() {
         </div>
       </div>
 
-      {/* Tax Health Score */}
       <div style={{
         background: '#f0f4ff',
         padding: '2rem',
@@ -188,7 +182,6 @@ export default function Results() {
         </p>
       </div>
 
-      {/* Action Buttons */}
       <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
         <button
           onClick={() => navigate('/wizard')}
