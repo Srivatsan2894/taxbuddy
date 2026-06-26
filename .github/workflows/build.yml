@@ -44,12 +44,24 @@ jobs:
           cd android
           chmod +x gradlew
           ./gradlew clean
-          ./gradlew assembleRelease --stacktrace
+          ./gradlew assembleRelease
+      
+      - name: Find APK
+        run: |
+          echo "Looking for APK files..."
+          find android -name "*.apk" -type f
       
       - name: Upload APK
         uses: actions/upload-artifact@v4
-        if: success()
         with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          name: app-release
+          path: android/app/build/outputs/apk/release/
           retention-days: 30
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: always()
+        with:
+          files: android/app/build/outputs/apk/release/*.apk
+          tag_name: v${{ github.run_number }}
+        continue-on-error: true
