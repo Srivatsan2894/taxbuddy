@@ -140,3 +140,4 @@ For issues, suggestions, or feedback, please create an issue on GitHub.
 "Fix vite config" 
 "All imports fixed - ready to build" 
 "Fix Dashboard" 
+"Remove tsconfig reference" 
