@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { clearAllStorage } from '@/utils/storage'
+import { clearAllStorage } from '../utils/storage'
 
 export default function Settings() {
   const [showClearConfirm, setShowClearConfirm] = useState(false)
@@ -14,7 +14,6 @@ export default function Settings() {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
       <h1 style={{ color: '#6200EA', marginBottom: '2rem' }}>Settings</h1>
 
-      {/* App Info */}
       <div style={{
         background: '#f9f9f9',
         padding: '2rem',
@@ -39,7 +38,6 @@ export default function Settings() {
         </div>
       </div>
 
-      {/* How to Use */}
       <div style={{
         background: '#f9f9f9',
         padding: '2rem',
@@ -59,7 +57,6 @@ export default function Settings() {
         </ol>
       </div>
 
-      {/* Important Notes */}
       <div style={{
         background: '#fff3e0',
         padding: '2rem',
@@ -78,7 +75,6 @@ export default function Settings() {
         </ul>
       </div>
 
-      {/* Data Privacy */}
       <div style={{
         background: '#e3f2fd',
         padding: '2rem',
@@ -158,7 +154,6 @@ export default function Settings() {
         )}
       </div>
 
-      {/* Features List */}
       <div style={{
         background: '#e8f5e9',
         padding: '2rem',
