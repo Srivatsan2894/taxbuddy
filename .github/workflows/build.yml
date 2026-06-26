@@ -16,18 +16,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       - name: Install dependencies
+        run: npm install
+
+      - name: Commit lock file if new
         run: |
-          npm install
-          if [ ! -f package-lock.json ]; then
-            git config user.name "GitHub Actions"
-            git config user.email "actions@github.com"
-            git add package-lock.json
-            git commit -m "Add package-lock.json" || true
-            git push || true
-          fi
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add package-lock.json
+          git commit -m "Add package-lock.json" || echo "Lock file already exists"
+          git push || echo "Nothing to push"
 
       - name: Build React app
         run: npm run build
@@ -37,7 +36,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
 
       - name: Add Capacitor Android
         run: npm run cap:add:android
@@ -58,11 +56,3 @@ jobs:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
-
-      - name: Upload Build Logs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-logs
-          path: android/build.log
-          retention-days: 7
