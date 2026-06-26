@@ -19,7 +19,15 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          if [ ! -f package-lock.json ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add package-lock.json
+            git commit -m "Add package-lock.json" || true
+            git push || true
+          fi
 
       - name: Build React app
         run: npm run build
