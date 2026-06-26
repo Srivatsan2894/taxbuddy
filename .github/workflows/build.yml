@@ -22,9 +22,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Add Capacitor Android
-        run: npm run cap:add:android
+        run: npx capacitor add android
       - name: Sync Capacitor
-        run: npm run cap:sync
+        run: npx capacitor sync android
       - name: Build Release APK
         run: |
           cd android
