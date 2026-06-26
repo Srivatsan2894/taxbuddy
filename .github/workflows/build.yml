@@ -21,7 +21,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
       
       - name: Install npm deps
@@ -33,14 +33,11 @@ jobs:
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
       
-      - name: Initialize Capacitor (if needed)
+      - name: Initialize Capacitor
         run: npx capacitor add android || echo "Android already added"
       
       - name: Sync Capacitor
         run: npx capacitor sync android
-      
-      - name: List Android structure
-        run: ls -la android/
       
       - name: Build Release APK
         run: |
