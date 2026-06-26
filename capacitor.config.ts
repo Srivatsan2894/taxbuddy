@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
   appId: 'com.taxbuddy.app',
-  appName: 'TaxBuddy',
+  appName: 'TaxBuddy India',
   webDir: 'dist',
   server: {
     androidScheme: 'https',

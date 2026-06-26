@@ -1,6 +1,8 @@
 node_modules
 dist
-.DS_Store
-*.local
+build
+android
 .env
-"android/" 
+.env.local
+.DS_Store
+*.apk
