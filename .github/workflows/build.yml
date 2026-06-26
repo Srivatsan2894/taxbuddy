@@ -10,39 +10,44 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
       
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build React app
-        run: npm run build
-      
-      - name: Set up JDK 17
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
       
+      - name: Install npm deps
+        run: npm install
+      
+      - name: Build React
+        run: npm run build
+      
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
       
-      - name: Add Capacitor Android
-        run: npx capacitor add android || true
+      - name: Initialize Capacitor (if needed)
+        run: npx capacitor add android || echo "Android already added"
       
       - name: Sync Capacitor
         run: npx capacitor sync android
+      
+      - name: List Android structure
+        run: ls -la android/
       
       - name: Build Release APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew clean
+          ./gradlew assembleRelease --stacktrace
       
       - name: Upload APK
         uses: actions/upload-artifact@v4
