@@ -1,33 +1,12 @@
 export async function saveToStorage(key: string, value: any): Promise<void> {
-  try {
-    localStorage.setItem(key, JSON.stringify(value))
-  } catch (error) {
-    console.error('Storage error:', error)
-  }
+  localStorage.setItem(key, JSON.stringify(value))
 }
 
 export async function getFromStorage(key: string): Promise<any> {
-  try {
-    const stored = localStorage.getItem(key)
-    return stored ? JSON.parse(stored) : null
-  } catch (error) {
-    console.error('Storage error:', error)
-    return null
-  }
+  const item = localStorage.getItem(key)
+  return item ? JSON.parse(item) : null
 }
 
-export async function removeFromStorage(key: string): Promise<void> {
-  try {
-    localStorage.removeItem(key)
-  } catch (error) {
-    console.error('Storage error:', error)
-  }
-}
-
-export async function clearAllStorage(): Promise<void> {
-  try {
-    localStorage.clear()
-  } catch (error) {
-    console.error('Storage error:', error)
-  }
+export async function clearStorage(): Promise<void> {
+  localStorage.clear()
 }
