@@ -1,0 +1,94 @@
+{
+  "financialYear": "2025-26",
+  "taxYear": "FY2025-26",
+  "standardDeduction": 50000,
+  "oldRegime": {
+    "slabs": [
+      { "min": 0, "max": 250000, "rate": 0 },
+      { "min": 250001, "max": 500000, "rate": 0.05 },
+      { "min": 500001, "max": 1000000, "rate": 0.20 },
+      { "min": 1000001, "max": null, "rate": 0.30 }
+    ],
+    "deductions": {
+      "section80C": { "max": 150000, "description": "Life Insurance, PPF, ELSS, etc." },
+      "section80D": { "max": 25000, "maxSenior": 50000, "description": "Health Insurance Premium" },
+      "section80CCD1B": { "max": 50000, "description": "NPS Additional Contribution" },
+      "section24B": { "max": 200000, "description": "Home Loan Interest" },
+      "section80E": { "max": 0, "description": "Education Loan Interest" },
+      "section80TTA": { "max": 10000, "description": "Savings Account Interest" }
+    },
+    "allowances": {
+      "HRA": true,
+      "LTA": true,
+      "DA": true,
+      "specialAllowance": true,
+      "otherAllowance": true
+    }
+  },
+  "newRegime": {
+    "slabs": [
+      { "min": 0, "max": 300000, "rate": 0 },
+      { "min": 300001, "max": 750000, "rate": 0.05 },
+      { "min": 750001, "max": 1000000, "rate": 0.10 },
+      { "min": 1000001, "max": 1250000, "rate": 0.15 },
+      { "min": 1250001, "max": 1500000, "rate": 0.20 },
+      { "min": 1500001, "max": null, "rate": 0.30 }
+    ],
+    "deductions": {
+      "standardDeduction": { "max": 50000, "description": "Standard Deduction" },
+      "section80C": { "max": 0, "description": "Not Applicable" },
+      "section80D": { "max": 0, "description": "Not Applicable" },
+      "section24B": { "max": 0, "description": "Not Applicable" }
+    },
+    "allowances": {
+      "HRA": false,
+      "LTA": false,
+      "DA": true,
+      "specialAllowance": true,
+      "otherAllowance": true
+    }
+  },
+  "surcharge": [
+    { "min": 0, "max": 5000000, "rate": 0 },
+    { "min": 5000001, "max": 10000000, "rate": 0.15 },
+    { "min": 10000001, "max": 20000000, "rate": 0.25 },
+    { "min": 20000001, "max": 50000000, "rate": 0.37 },
+    { "min": 50000001, "max": null, "rate": 0.42 }
+  ],
+  "cess": 0.04,
+  "professionalTax": {
+    "maxDeduction": 2500,
+    "states": {
+      "maharashtra": { "max": 2500, "rate": 0.01 },
+      "karnataka": { "max": 2500, "rate": 0.01 },
+      "other": { "max": 2500, "rate": 0.01 }
+    }
+  },
+  "pfContribution": {
+    "employeeRate": 0.12,
+    "employerRate": 0.12,
+    "maxPFWage": 15000,
+    "deductionInOldRegime": true
+  },
+  "rebates": {
+    "section87A": {
+      "newRegime": {
+        "maxIncome": 700000,
+        "maxTax": 25000
+      },
+      "oldRegime": {
+        "maxIncome": 500000,
+        "maxTax": 12500
+      }
+    }
+  },
+  "deadline": {
+    "investmentDeclaration": "31-Dec",
+    "advanceTax1stInstalment": "15-Jun",
+    "advanceTax2ndInstalment": "15-Sep",
+    "advanceTax3rdInstalment": "15-Dec",
+    "advanceTax4thInstalment": "15-Mar",
+    "form16Availability": "31-May",
+    "itrFilingDeadline": "31-Jul"
+  }
+}
