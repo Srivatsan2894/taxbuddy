@@ -13,6 +13,7 @@ interface AppState {
 interface AppStore extends AppState {
   setFY: (fy: string) => void
   setSaved: (saved: any[]) => void
+  addSaved: (item: any) => void
   removeSaved: (id: string) => void
   saveCalculation: (calc: SavedCalculation) => void
   deleteCalculation: (id: string) => void
@@ -32,6 +33,7 @@ export const useAppState = create<AppStore>()(
 
       setFY: (fy) => set({ fy }),
       setSaved: (saved) => set({ saved }),
+      addSaved: (item) => set((state) => ({ saved: [...state.saved, item] })),
       removeSaved: (id) => set((state) => ({ saved: state.saved.filter((s) => s.id !== id) })),
       
       saveCalculation: (calc) => set((state) => ({ savedCalculations: [...state.savedCalculations.filter((c) => c.id !== calc.id), calc] })),
@@ -46,5 +48,6 @@ export const useAppState = create<AppStore>()(
 
 export const useFY = () => useAppState((state) => state.fy)
 export const useSaved = (id: string) => useAppState((state) => state.saved.find((s) => s.id === id))
+export const addSaved = (item: any) => useAppState.getState().addSaved(item)
 export const removeSaved = (id: string) => useAppState.getState().removeSaved(id)
 export const useTaxStore = useAppState
